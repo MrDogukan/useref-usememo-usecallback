@@ -1,6 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const UseRefComponent = () => {
+  const [value, setValue] = useState(0);
+
   const inputRef = useRef(null);
   const divRef = useRef(null);
   useEffect(() => {
@@ -21,11 +23,19 @@ const UseRefComponent = () => {
     divRef.current.style.backgroundColor = inputRef.current.value;
   };
 
+  const valueRef = useRef(0);
+  const increase = () => {
+    setValue(value + 1);
+    valueRef.current++;
+  };
+
   return (
     <div ref={divRef} className="useref">
       <h2>Useref Component</h2>
-      <input ref={inputRef} type="color" placeholder="Enter Text..." />
+      <input ref={inputRef} type="color" />
       <button onClick={changeBGColor}>ChangeBGColor</button>
+      <h2>{value}</h2>
+      <button onClick={increase}>Increase Value</button>
     </div>
   );
 };
